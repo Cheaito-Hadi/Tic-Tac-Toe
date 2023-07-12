@@ -19,18 +19,26 @@
     border: 2px solid black;
 }
 
-#cell-0, #cell-3, #cell-6 {
+#cell1,
+#cell4,
+#cell7 {
     border-left: none;
 }
 
-#cell-6, #cell-7, #cell-8 {
+#cell7,
+#cell8,
+#cell9 {
     border-bottom: none;
 }
 
-#cell-8, #cell-5, #cell-2{
+#cell9,
+#cell6,
+#cell3 {
     border-right: none;
 }
 
-#cell-0, #cell-1, #cell-2{
+#cell1,
+#cell2,
+#cell3 {
     border-top: none;
 }
