@@ -1,9 +1,8 @@
 localStorage.setItem('player', 'p1')
-const player_1 = document.getElementById('player1')
-const player_2 = document.getElementById('player2')
+const player1 = document.getElementById('player1')
+const player2 = document.getElementById('player2')
 const firstScore = document.getElementById('player1_score')
 const secondScore = document.getElementById('player2_score')
-
 
 let wining_cases =
     [
@@ -13,12 +12,12 @@ let wining_cases =
         ['cell1', 'cell5', 'cell9'], ['cell3', 'cell5', 'cell7']
     ]
 
-let attempts_x = []
-let attempts_o = []
+let attemptsX = []
+let attemptsO = []
 let counter = 0;
 let game_won = false;
-let score_1 = 0;
-let score_2 = 0;
+let score1 = 0;
+let score2 = 0;
 
 
 for (let i = 1; i <= 9; i++) {
@@ -28,17 +27,14 @@ for (let i = 1; i <= 9; i++) {
         if (current_player == 'p1') {
             cell.innerText = "x"
             localStorage.setItem('player', 'p2');
-            attempts_x.push(cell.id)
-            console.log(attempts_x)
-            if (attempts_x.length >= 3) {
+            attemptsX.push(cell.id)
+            if (attemptsX.length >= 3) {
                 for (let j = 0; j < wining_cases.length; j++) {
-                    if (matchArrays(wining_cases[j], attempts_x)) {
-                        console.log(player_1.value + ' wins')
+                    if (matchArrays(wining_cases[j], attemptsX)) {
                         game_won = true;
                         individualScore('p1')
                         resetGame()
                         break;
-
                     }
                 }
             }
@@ -46,25 +42,21 @@ for (let i = 1; i <= 9; i++) {
         } else {
             cell.innerText = "o"
             localStorage.setItem('player', 'p1');
-            attempts_o.push(cell.id)
-            console.log(attempts_o)
-            if (attempts_o.length >= 3) {
+            attemptsO.push(cell.id)
+            if (attemptsO.length >= 3) {
                 for (let j = 0; j < wining_cases.length; j++) {
-                    if (matchArrays(wining_cases[j], attempts_o)) {
-                        console.log(player_2.value + ' wins')
+                    if (matchArrays(wining_cases[j], attemptsO)) {
                         game_won = true;
                         individualScore('p2')
                         resetGame()
                         break;
-
                     }
                 }
             }
         }
-        if (attempts_o.length + attempts_x.length == 9 && game_won == false) {
+        if (attemptsO.length + attemptsX.length == 9 && game_won == false) {
             console.log("Draw",)
             resetGame()
-
         }
     });
 }
@@ -93,8 +85,8 @@ function resetGame() {
         cell.innerText = "";
     }
 
-    attempts_x = [];
-    attempts_o = [];
+    attemptsX = [];
+    attemptsO = [];
     game_won = false;
     counter = 0;
     localStorage.setItem('player', 'p1');
@@ -102,16 +94,25 @@ function resetGame() {
 }
 
 function addScore() {
-    firstScore.innerText = score_1
-    secondScore.innerText = score_2
+    firstScore.innerText = score1
+    secondScore.innerText = score2
 }
 
 function individualScore(p) {
     if (p === 'p1') {
-        score_1++;
+        score1++;
     }
     else {
-        score_2++;
+        score2++;
     }
     addScore()
 }
+
+function setName() {
+    const name1 = player1.value;
+    const name2 = player2.value;
+    firstScore.innerText = name1;
+    secondScore.innerText = name2;
+}
+
+player2.addEventListener('change', setName)
