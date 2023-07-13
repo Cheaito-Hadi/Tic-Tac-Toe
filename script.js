@@ -5,9 +5,13 @@ const firstScore = document.getElementById('player1_score')
 const secondScore = document.getElementById('player2_score')
 
 
-let wining_cases = [['cell1', 'cell2', 'cell3'], ['cell4', 'cell5', 'cell6'], ['cell7', 'cell8', 'cell9'],
-['cell1, cell4', 'cell7'], ['cell2', 'cell5', 'cell8'], ['cell3', 'cell6', 'cell9'], ['cell1', 'cell5', 'cell9'],
-['cell3', 'cell5', 'cell7']]
+let wining_cases =
+    [
+        ['cell1', 'cell2', 'cell3'], ['cell4', 'cell5', 'cell6'],
+        ['cell7', 'cell8', 'cell9'], ['cell1', 'cell4', 'cell7'],
+        ['cell2', 'cell5', 'cell8'], ['cell3', 'cell6', 'cell9'],
+        ['cell1', 'cell5', 'cell9'], ['cell3', 'cell5', 'cell7']
+    ]
 
 let attempts_x = []
 let attempts_o = []
@@ -52,7 +56,7 @@ for (let i = 1; i <= 9; i++) {
                         individualScore('p2')
                         resetGame()
                         break;
-                        
+
                     }
                 }
             }
@@ -97,17 +101,16 @@ function resetGame() {
     addScore();
 }
 
-function addScore(){
+function addScore() {
     firstScore.innerText = score_1
     secondScore.innerText = score_2
 }
 
-function individualScore(p){
-    if (p === 'p1'){
+function individualScore(p) {
+    if (p === 'p1') {
         score_1++;
     }
-    else
-    {
+    else {
         score_2++;
     }
     addScore()

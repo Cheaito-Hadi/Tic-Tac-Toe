@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TicTacToe</title>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
+
 <body>
-    <div>
-        <h2>
-            Welcome to Tic Tac Toe
-        </h2>
-        <input id="player1" placeholder="Player 1 name"></input>
-        <input id="player2" placeholder="Player 2 name"></input>
-        <label id="player1_score">Score1</label>
-        <label id="player2_score">Score1</label>
+    <div class="game-header">
+        <h1>
+            Welcome to Tic Tac Toe!
+        </h1>
+        <div>
+            <input id="player1" placeholder="Player 1 name"></input>
+            <input id="player2" placeholder="Player 2 name"></input>  
+ 
+        </div>
+        <div class="score">Scores: <br>
+            <label id="player1_score">Player 1 Score</label> 
+            <label id="player2_score">Player 2 Score</label>
+        </div>   
     </div>
     <div class="game">
         <div class="row">
@@ -33,6 +40,7 @@
             <div id="cell9" class="cell"></div>
         </div>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
+
 </html>
