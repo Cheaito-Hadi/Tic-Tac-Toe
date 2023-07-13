@@ -1,26 +1,25 @@
 localStorage.setItem('player', 'p1')
 const player_1 = document.getElementById('player1')
 const player_2 = document.getElementById('player2')
-
+const firstScore = document.getElementById('player1_score')
+const secondScore = document.getElementById('player2_score')
 
 
 let wining_cases = [['cell1', 'cell2', 'cell3'], ['cell4', 'cell5', 'cell6'], ['cell7', 'cell8', 'cell9'],
-['cell1, cell3', 'cell7'], ['cell2', 'cell5', 'cell8'], ['cell3', 'cell6', 'cell9'], ['cell1', 'cell5', 'cell9'],
+['cell1, cell4', 'cell7'], ['cell2', 'cell5', 'cell8'], ['cell3', 'cell6', 'cell9'], ['cell1', 'cell5', 'cell9'],
 ['cell3', 'cell5', 'cell7']]
 
 let attempts_x = []
 let attempts_o = []
 let counter = 0;
 let game_won = false;
+let score_1 = 0;
+let score_2 = 0;
 
 
 for (let i = 1; i <= 9; i++) {
     let cell = document.getElementById('cell' + i);
     cell.addEventListener('click', function () {
-        if (game_won == true) {
-            console.log('game ended')
-            return
-        }
         let current_player = localStorage.getItem('player');
         if (current_player == 'p1') {
             cell.innerText = "x"
@@ -32,7 +31,9 @@ for (let i = 1; i <= 9; i++) {
                     if (matchArrays(wining_cases[j], attempts_x)) {
                         console.log(player_1.value + ' wins')
                         game_won = true;
+                        individualScore('p1')
                         resetGame()
+                        break;
 
                     }
                 }
@@ -46,9 +47,12 @@ for (let i = 1; i <= 9; i++) {
             if (attempts_o.length >= 3) {
                 for (let j = 0; j < wining_cases.length; j++) {
                     if (matchArrays(wining_cases[j], attempts_o)) {
-                        console.log(player_2.value + 'wins')
+                        console.log(player_2.value + ' wins')
                         game_won = true;
+                        individualScore('p2')
                         resetGame()
+                        break;
+                        
                     }
                 }
             }
@@ -90,4 +94,21 @@ function resetGame() {
     game_won = false;
     counter = 0;
     localStorage.setItem('player', 'p1');
+    addScore();
+}
+
+function addScore(){
+    firstScore.innerText = score_1
+    secondScore.innerText = score_2
+}
+
+function individualScore(p){
+    if (p === 'p1'){
+        score_1++;
+    }
+    else
+    {
+        score_2++;
+    }
+    addScore()
 }
