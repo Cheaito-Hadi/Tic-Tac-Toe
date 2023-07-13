@@ -32,6 +32,8 @@ for (let i = 1; i <= 9; i++) {
                     if (matchArrays(wining_cases[j], attempts_x)) {
                         console.log(player_1.value + ' wins')
                         game_won = true;
+                        resetGame()
+
                     }
                 }
             }
@@ -46,12 +48,15 @@ for (let i = 1; i <= 9; i++) {
                     if (matchArrays(wining_cases[j], attempts_o)) {
                         console.log(player_2.value + 'wins')
                         game_won = true;
+                        resetGame()
                     }
                 }
             }
         }
         if (attempts_o.length + attempts_x.length == 9 && game_won == false) {
             console.log("Draw",)
+            resetGame()
+
         }
     });
 }
@@ -72,4 +77,17 @@ function matchArrays(arr1, arr2) {
         return true
     }
     return false
+}
+
+function resetGame() {
+    for (let i = 1; i <= 9; i++) {
+        let cell = document.getElementById('cell' + i);
+        cell.innerText = "";
+    }
+
+    attempts_x = [];
+    attempts_o = [];
+    game_won = false;
+    counter = 0;
+    localStorage.setItem('player', 'p1');
 }
